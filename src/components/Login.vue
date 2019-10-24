@@ -3,10 +3,10 @@
     <el-form :model="form" label-width="80px" :rules="rules" ref="form" status-icon>
       <img src="../assets/timg.gif" alt="" class="img">
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+        <el-input v-model="form.username" placeholder="请输入用户名" @keyup.enter.native="login"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="form.password" placeholder="请输入密码" type="password"></el-input>
+        <el-input v-model="form.password" placeholder="请输入密码" type="password" @keyup.enter.native="login"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" class="loginBtn" @click="login">登录</el-button>
@@ -49,7 +49,9 @@ export default {
           url: 'http://localhost:8888/api/private/v1/login',
           data: this.form
         }).then(res => {
-          const { meta } = res.data
+          const { meta, data } = res.data
+          // console.log(res.data)
+          localStorage.setItem('token', data.token)
           if (meta.status === 200) {
             this.$message({
               message: '恭喜你，登录成功',
