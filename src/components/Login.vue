@@ -40,7 +40,7 @@ export default {
     reset () {
       this.$refs.form.resetFields()
     },
-    async login () {
+    login () {
       this.$refs.form.validate(isvalid => {
         if (!isvalid) return
         this.$axios({
