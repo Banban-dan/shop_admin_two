@@ -15,6 +15,7 @@ const router = new VueRouter({
   routes
 })
 
+// 配置导航守卫
 router.beforeEach((to, from, next) => {
   // console.log(to)
   const token = localStorage.getItem('token')

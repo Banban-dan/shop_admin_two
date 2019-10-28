@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -41,12 +40,12 @@ export default {
     reset () {
       this.$refs.form.resetFields()
     },
-    login () {
+    async login () {
       this.$refs.form.validate(isvalid => {
         if (!isvalid) return
-        axios({
+        this.$axios({
           method: 'post',
-          url: 'http://localhost:8888/api/private/v1/login',
+          url: 'login',
           data: this.form
         }).then(res => {
           const { meta, data } = res.data
