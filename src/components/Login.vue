@@ -48,8 +48,8 @@ export default {
           url: 'login',
           data: this.form
         }).then(res => {
-          const { meta, data } = res.data
-          // console.log(res.data)
+          const { meta, data } = res
+          // console.log(res)
           localStorage.setItem('token', data.token)
           if (meta.status === 200) {
             this.$message({
